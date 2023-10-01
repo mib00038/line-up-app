@@ -73,7 +73,6 @@ export const performanceApi = baseApi
           url: `performance/${performanceId}/`,
         }),
         transformResponse: (response: any): PerformanceType => response.data,
-        // providesTags: ({data: {results}}) => results ? results.map(({id}) => ({type: Comics, id})) : [Performance]
       }),
     }),
     overrideExisting: false,

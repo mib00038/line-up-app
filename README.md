@@ -1,9 +1,9 @@
 ##  Noteworthy Project Features
 
-- Basket state is maintained and managed by Redux Toolkit, then allows users to navigate away from the ticket list.
-- There is a tab component and users can tab between the event page and ticket list without basket state being reset.
+- Basket state is maintained and managed by Redux Toolkit. 
+- There is a tab component and users can tab between the event page and ticket list without Basket state being reset.
 - Performance and Event query data is cached to prevent excessive re-fetching.
-- A Spinner displays when performance data is being fetched.
+- A Spinner displays to show performance data is being fetched.
 - Users are prevented from adding more tickets to their basket than remaining capacity for any particular ticket banding.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

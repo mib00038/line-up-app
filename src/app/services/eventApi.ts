@@ -1,6 +1,6 @@
-import { baseApi } from './baseApi';
+import { baseApi } from "./baseApi";
 
-export const Event = 'event';
+export const Event = "event";
 
 interface EventQuery {
   eventId: number;
@@ -60,13 +60,12 @@ export interface EventType {
 }
 
 const eventApi = baseApi
-  .enhanceEndpoints({addTagTypes: [Event]})
+  .enhanceEndpoints({ addTagTypes: [Event] })
   .injectEndpoints({
     endpoints: (builder) => ({
       event: builder.query({
-        query: ({eventId} : EventQuery) => ({ url: `event/${eventId}/` }),
-        transformResponse: (response: any) : EventType => response.data,
-        // providesTags: ({data: {results}}) => results ? results.map(({id}) => ({type: Comics, id})) : [Comics]
+        query: ({ eventId }: EventQuery) => ({ url: `event/${eventId}/` }),
+        transformResponse: (response: any): EventType => response.data,
       }),
     }),
     overrideExisting: false,
