@@ -1,25 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Grommet, Main, Page, PageContent } from "grommet";
+import GridContainer from "./components/GridContainer";
+import "./App.css";
+
+const theme = {
+  global: {
+    font: {
+      family: "Roboto",
+      size: "18px",
+      height: "20px",
+    },
+  },
+  tab: {
+    color: "grey",
+    active: {
+      color: "#161e5b",
+    },
+    border: {
+      color: "lightgrey",
+      active: {
+        color: "#161e5b",
+      },
+    },
+  },
+};
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Grommet theme={theme} full>
+      <Main>
+        <Page kind="narrow">
+          <PageContent>
+            <GridContainer />
+          </PageContent>
+        </Page>
+      </Main>
+    </Grommet>
   );
 }
 
