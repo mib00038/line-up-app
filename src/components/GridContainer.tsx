@@ -1,6 +1,6 @@
 import React from "react";
-import { Box, Grid, Tab, Tabs } from "grommet";
-import PerformanceList from "./PerformanceList";
+import { Box, Grid } from "grommet";
+import TabsNavigation from "./TabsNavigation";
 
 const GridContainer = () => {
   return (
@@ -9,19 +9,6 @@ const GridContainer = () => {
         <TabsNavigation />
       </Grid>
     </Box>
-  );
-};
-
-const TabsNavigation = () => {
-  return (
-    <Tabs>
-      <Tab title="performance">
-        <PerformanceList />
-      </Tab>
-      <Tab title="event info">
-        <Box pad="medium">Two</Box>
-      </Tab>
-    </Tabs>
   );
 };
 

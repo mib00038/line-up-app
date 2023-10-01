@@ -32,7 +32,7 @@ const basketSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    // initialise basket when performance query is fulfilled
+    // initialise basket with result of fulfilled performance query
     builder.addMatcher(
       performanceApi.endpoints.performance.matchFulfilled,
       (draft: Draft<TicketOrders>, action: PayloadAction<any>) => {

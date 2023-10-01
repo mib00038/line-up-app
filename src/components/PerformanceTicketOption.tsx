@@ -17,6 +17,7 @@ interface PerformanceTicketOptionProps {
   adjusters: Adjuster[];
   variantDescription?: string;
   basket: TicketOrders;
+  atCapacity: boolean;
 }
 
 const PerformanceTicketOption = ({
@@ -30,6 +31,7 @@ const PerformanceTicketOption = ({
   adjusters,
   variantDescription,
   basket,
+  atCapacity,
 }: PerformanceTicketOptionProps) => {
   const ticketTitle = `${priceBandName} - ${title}`;
   const currency = organisation.currency === "GBP" ? "£" : "";
@@ -79,6 +81,7 @@ const PerformanceTicketOption = ({
             ticketCount={ticketCount}
             variantId={variantId}
             priceBandId={priceBandId}
+            atCapacity={atCapacity}
           />
         </Box>
       </Box>

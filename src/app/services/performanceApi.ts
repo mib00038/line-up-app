@@ -1,6 +1,6 @@
-import { baseApi } from './baseApi';
+import { baseApi } from "./baseApi";
 
-export const Performance = 'performance';
+export const Performance = "performance";
 
 export interface PerformanceQuery {
   performanceId: string;
@@ -31,7 +31,7 @@ export interface PricingVariant {
   name: string;
   description?: string;
   price?: Pricing;
-  adjusters: Adjuster[]
+  adjusters: Adjuster[];
 }
 
 export interface PricingBandWithVariants {
@@ -39,7 +39,7 @@ export interface PricingBandWithVariants {
   name: string;
   description?: string;
   color: string;
-  variants: PricingVariant[]
+  variants: PricingVariant[];
 }
 
 export interface PricingMap {
@@ -65,12 +65,14 @@ export interface PerformanceType {
 }
 
 export const performanceApi = baseApi
-  .enhanceEndpoints({addTagTypes: [Performance]})
+  .enhanceEndpoints({ addTagTypes: [Performance] })
   .injectEndpoints({
     endpoints: (builder: any) => ({
       performance: builder.query({
-        query: ({performanceId} : PerformanceQuery) => ({ url: `performance/${performanceId}/` }),
-        transformResponse: (response: any): PerformanceType => response.data
+        query: ({ performanceId }: PerformanceQuery) => ({
+          url: `performance/${performanceId}/`,
+        }),
+        transformResponse: (response: any): PerformanceType => response.data,
         // providesTags: ({data: {results}}) => results ? results.map(({id}) => ({type: Comics, id})) : [Performance]
       }),
     }),

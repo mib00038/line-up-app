@@ -1,19 +1,39 @@
-import React from "react";
-import {PricingMap, PricingVariant} from "../app/services/performanceApi";
+import React, { memo } from "react";
+import {
+  PricingBandWithVariants,
+  PricingVariant,
+} from "../app/services/performanceApi";
 import PerformanceTicketOption from "./PerformanceTicketOption";
-import {OrganisationCurrency} from "../app/services/eventApi";
-import {TicketOrders} from "../app/slices/basketSlice";
+import { useEventQuery } from "../app/services/eventApi";
+import { TicketOrders } from "../app/slices/basketSlice";
 
 interface PerformancePriceBandVariantsProps {
-  price: PricingMap;
-  organisation: OrganisationCurrency;
+  priceBand: PricingBandWithVariants;
   basket: TicketOrders;
+  eventId: number;
+  capacityRemaining: number;
 }
 
-const PerformancePriceBandVariants = ({price, organisation, basket}: PerformancePriceBandVariantsProps) => {
-  const { priceBand } = price;
+const PerformancePriceBandVariants = ({
+  priceBand,
+  basket,
+  eventId,
+  capacityRemaining,
+}: PerformancePriceBandVariantsProps) => {
+  // const { priceBand } = price;
+  const { isLoading: isEventLoading, data: event }: any = useEventQuery({
+    eventId,
+  });
 
-  return (
+  const bandTicketOrderCount = basket.reduce(
+    (total, order) =>
+      order.priceBandId === priceBand.id ? total + order.ticketCount : total,
+    0,
+  );
+
+  const atCapacity = bandTicketOrderCount > capacityRemaining;
+
+  return isEventLoading ? null : (
     <>
       {priceBand?.variants?.map((variant: PricingVariant) => {
         return (
@@ -27,13 +47,14 @@ const PerformancePriceBandVariants = ({price, organisation, basket}: Performance
             variantDescription={variant.description}
             adjusters={variant.adjusters}
             price={variant.price}
-            organisation={organisation}
+            organisation={event.organisation}
             basket={basket}
+            atCapacity={atCapacity}
           />
-        )
+        );
       })}
     </>
   );
-}
+};
 
-export default PerformancePriceBandVariants;
+export default memo(PerformancePriceBandVariants);
